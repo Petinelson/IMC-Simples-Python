@@ -1,34 +1,39 @@
-from click import clear
-from os import system
+import os
 import math
 
-#Metodo Python
-while(True):
-    clear()
-    peso = float(input("informe seu peso: "))
-    altura = float(input("informe sua altura: "))
+# Função para limpar a tela
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-    imc = peso / altura ** 2
-    imc = round(imc, 2)
-    print(f"Seu imc é: {imc} \n")
+# Calcula e imprime o IMC
+def calcular_imc():
+    peso = float(input("Informe seu peso (kg): "))
+    altura = float(input("Informe sua altura (m): "))
 
-    if imc < 17.0:
+    imc = round(peso / altura ** 2, 2)
+    print(f"Seu IMC é: {imc}\n")
+
+    if imc < 17:
         print("Muito abaixo do peso")
-    elif 17.0 >= imc <= 18.49:
+    elif 17 <= imc < 18.5:
         print("Abaixo do peso")
-    elif 18.5 >= imc <= 24.99:
+    elif 18.5 <= imc < 25:
         print("Peso normal")
-    elif 25.0 >= imc <= 29.99:
+    elif 25 <= imc < 30:
         print("Acima do peso")
-    elif 30.0 >= imc <= 34.99:
-        print("Obesidade 1")
-    elif 35.0 >= imc <= 39.99:
-        print("Obesidade 2 (severa)")
+    elif 30 <= imc < 35:
+        print("Obesidade Grau I")
+    elif 35 <= imc < 40:
+        print("Obesidade Grau II (severa)")
     else:
-        print("Obesidade 3 (móbida")
+        print("Obesidade Grau III (mórbida)")
 
-    verificar = input("Deseja continuar no sistema (S/N)")
+# Loop principal do programa
+while True:
+    clear_screen()
+    calcular_imc()
+
+    verificar = input("\nDeseja calcular outro IMC? (S/N): ").strip().upper()
     if verificar == "N":
+        print("Saindo do programa...")
         break
-    else:
-      continue
